@@ -21,13 +21,13 @@ export default {
   ],
   rules: {
     'no-empty-source': null,
-    // 处理不认识 rpx 问题
-    'unit-no-unknown': [
-      true,
-      {
-        ignoreUnits: ['rpx']
-      }
-    ],
+    // // 处理不认识 rpx 问题
+    // 'unit-no-unknown': [
+    //   true,
+    //   {
+    //     ignoreUnits: ['rpx']
+    //   }
+    // ],
     // 处理小程序page标签不认识的问题
     'selector-type-no-unknown': [
       true,

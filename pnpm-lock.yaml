@@ -82,8 +82,8 @@ importers:
         specifier: ^3.4.21
         version: 3.5.17
       '@vue/tsconfig':
-        specifier: ^0.1.3
-        version: 0.1.3(@types/node@24.0.3)
+        specifier: ^0.4.0
+        version: 0.4.0
       eslint:
         specifier: ^9.29.0
         version: 9.29.0
@@ -1824,13 +1824,8 @@ packages:
   '@vue/shared@3.5.17':
     resolution: {integrity: sha512-CabR+UN630VnsJO/jHWYBC1YVXyMq94KKp6iF5MQgZJs5I8cmjw6oVMO1oDbtBkENSHSSn/UadWlW/OAgdmKrg==}
 
-  '@vue/tsconfig@0.1.3':
-    resolution: {integrity: sha512-kQVsh8yyWPvHpb8gIc9l/HIDiiVUy1amynLNpCy8p+FoCiZXCo6fQos5/097MmnNZc9AtseDsCrfkhqCrJ8Olg==}
-    peerDependencies:
-      '@types/node': '*'
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
+  '@vue/tsconfig@0.4.0':
+    resolution: {integrity: sha512-CPuIReonid9+zOG/CGTT05FXrPYATEqoDGNrEaqS4hwcw5BUNM2FguC0mOwJD4Jr16UpRVl9N0pY3P+srIbqmg==}
 
   abab@2.0.6:
     resolution: {integrity: sha512-j2afSsaIENvHZN2B8GOpF566vZ5WVk5opAiMTvWgaQT8DkbOqsTfvNAvHoRGU2zzP8cPoqys+xHTRDWW8L+/BA==}
@@ -7041,9 +7036,7 @@ snapshots:
 
   '@vue/shared@3.5.17': {}
 
-  '@vue/tsconfig@0.1.3(@types/node@24.0.3)':
-    optionalDependencies:
-      '@types/node': 24.0.3
+  '@vue/tsconfig@0.4.0': {}
 
   abab@2.0.6: {}
 
