@@ -1,43 +1,56 @@
-import js from "@eslint/js";
-import globals from "globals";
-import tseslint from "typescript-eslint";
-import pluginVue from "eslint-plugin-vue";
-import { defineConfig } from "eslint/config";
-import eslintPluginImportX from "eslint-plugin-import-x";
-import tsParser from "@typescript-eslint/parser";
-export default defineConfig([
+// eslint.config.mjs
+
+import pluginJs from '@eslint/js'
+import tsParser from '@typescript-eslint/parser'
+import eslintPluginImportX from 'eslint-plugin-import-x'
+import eslintPluginPrettierRecommended from 'eslint-plugin-prettier/recommended'
+import pluginVue from 'eslint-plugin-vue'
+import globals from 'globals'
+import { configs, parser } from 'typescript-eslint'
+
+/** @type {import('eslint').Linter.Config[]} */
+export default [
+  // ignores 提升为全局忽略项
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"],
-    plugins: { js },
-    extends: ["js/recommended"],
+    ignores: ['src/uni_modules/', 'src/static/', '.vscode', '.husky']
   },
+  // 全局 files 指定 ESlint 匹配的文件
   {
-    files: ["**/*.{js,mjs,cjs,ts,mts,cts,vue}"],
-    languageOptions: { globals: { ...globals.browser, ...globals.node } },
+    files: ['**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx,vue}']
   },
-  tseslint.configs.recommended,
-  pluginVue.configs["flat/essential"],
+  // 基础配置
   {
-    files: ["**/*.vue"],
-    languageOptions: { parserOptions: { parser: tseslint.parser } },
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+      parser: tsParser,
+      ecmaVersion: 'latest',
+      sourceType: 'module'
+    }
   },
+  pluginJs.configs.recommended,
+  ...configs.recommended,
+  ...pluginVue.configs['flat/essential'],
+  // eslint-plugin-import-x 扩展插件
   eslintPluginImportX.flatConfigs.recommended,
   eslintPluginImportX.flatConfigs.typescript,
+  // prettier 扩展插件
+  eslintPluginPrettierRecommended,
+  // 仅对所有 vue 文件的自定义配置
   {
-    files: ["**/*.{js,mjs,cjs,jsx,mjsx,ts,tsx,mtsx}"],
-    ignores: ["eslint.config.mjs"],
-    languageOptions: {
-      parser: tsParser,
-      ecmaVersion: "latest",
-      sourceType: "module",
-    },
+    files: ['**/*.vue'],
+    languageOptions: { parserOptions: { parser: parser } }
+  },
+  // 自定义 rules
+  {
     rules: {
-      "no-unused-vars": "off",
-      "import-x/no-dynamic-require": "warn",
-      "import-x/no-nodejs-modules": "warn",
-    },
-  },
-  {
-    ignores: ["src/uni_modules/", "src/static/", ".vscode", ".husky"],
-  },
-]);
+      // 不允许存在未使用的变量
+      '@typescript-eslint/no-unused-vars': 'warn',
+      // vue 组件必须多单词驼峰命名，关闭它
+      'vue/multi-word-component-names': 'off',
+      // 禁止变量重新声明
+      '@typescript-eslint/no-redeclare': 'error',
+      // 禁止变量重新声明，与 @typescript-eslint 重复提示了，关闭它
+      'no-redeclare': 'off'
+    }
+  }
+]
