@@ -4,4 +4,4 @@ src/static/
 dist/
 
 **/*.svg
-
+src/static/icon/*

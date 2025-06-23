@@ -2,13 +2,21 @@
   <view class="content">
     <image class="logo" src="/static/logo.png" />
     <view class="text-area">
-      <text class="title">{{ title }}</text>
+      <text class="title">{{ useText().doubleCount }}</text>
+      <text @click="handleDoble"> Using data from % VITE_SERVOCE_HOST %</text>
+      <text class="iconfont icon-qian"></text>
     </view>
   </view>
 </template>
 <script setup lang="ts">
-import { ref } from 'vue'
-const title = ref('Hello')
+import { useText } from '@/store'
+const title = useText().doubleCount
+const handleDoble = () => {
+  console.log(1122)
+
+  useText().increment()
+}
+const tex = ref('sdfasdfa')
 </script>
 
 <style>

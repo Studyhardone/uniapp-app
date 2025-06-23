@@ -21,6 +21,9 @@ const config = {
   useTabs: false,
   // 单个参数的箭头函数不加括号 x => x
   arrowParens: 'avoid',
+  bracketSameLine: false, // HTML标签闭合括号是否另起一行
+
+  vueIndentScriptAndStyle: false, // 是否缩进Vue文件中的脚本和样式标签
   // 对象大括号内两边是否加空格 { a:0 }
   bracketSpacing: true
 }
